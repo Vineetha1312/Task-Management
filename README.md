@@ -1,7 +1,7 @@
-Task Management App
+### Task Management App
 A task management application built with React, TypeScript, and Tailwind CSS, utilizing Firebase Authentication for user login and Redux for state management. The app offers robust features for managing tasks, including task categorization, due dates, file attachments, batch actions, and more.
 
-Features
+### Features
 1. User Authentication
 Firebase Authentication integration with Google Sign-In for easy user login.
 Users can manage their profiles and authenticate securely.
@@ -38,37 +38,23 @@ Dnd Kit (For drag-and-drop functionality)
 react-router-dom (For routing)
 date-fns (For date manipulation)
 Setup Instructions
-Clone the repository:
-
-bash
-Copy
-Edit
+### Clone the repository:
 git clone https://github.com/yourusername/task-management-app.git
 cd task-management-app
 Install dependencies:
-
-bash
-Copy
-Edit
 npm install
-Set up Firebase:
 
+### Set up Firebase:
 Create a Firebase project and enable Google Sign-In Authentication.
 Add your Firebase config in .env:
-bash
-Copy
-Edit
+
 REACT_APP_FIREBASE_API_KEY=your_api_key
 REACT_APP_FIREBASE_AUTH_DOMAIN=your_auth_domain
 REACT_APP_FIREBASE_PROJECT_ID=your_project_id
 REACT_APP_FIREBASE_STORAGE_BUCKET=your_storage_bucket
 REACT_APP_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
 REACT_APP_FIREBASE_APP_ID=your_app_id
-Run the app:
-
-bash
-Copy
-Edit
+### Run the app:
 npm start
 Open your browser and visit http://localhost:3000.
 
