@@ -3,29 +3,34 @@ import { format, startOfMonth, endOfMonth, eachDayOfInterval, isToday, isSameDay
 import chevron from '../assets/images/chevron-down.svg';
 
 interface CustomCalendarProps {
-  onDateSelect: (date: string | null) => void; 
+  onDateSelect: (date: string | null) => void; // Callback to send selected date to parent
 }
 
 const CustomCalendar: React.FC<CustomCalendarProps> = ({ onDateSelect }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  // Local state for the selected date and calendar visibility
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [isOpen, setIsOpen] = useState(false);
   const [currentMonth, setCurrentMonth] = useState(new Date());
 
+  // Generate days for the current month
   const generateCalendarDays = (month: Date) => {
     return eachDayOfInterval({ start: startOfMonth(month), end: endOfMonth(month) });
   };
 
   const calendarDays = generateCalendarDays(currentMonth);
 
+  // Handle date selection
   const handleDateSelection = (date: Date) => {
-    setSelectedDate(date); 
-    onDateSelect(format(date, 'yyyy-MM-dd')); 
+    setSelectedDate(date); // Set the selected date locally
+    onDateSelect(format(date, 'yyyy-MM-dd')); // Send the formatted date to the parent component
   };
 
+  // Toggle calendar visibility
   const toggleCalendar = () => {
     setIsOpen(!isOpen);
   };
 
+  // Switch to the previous month
   const prevMonth = () => {
     setCurrentMonth((prevMonth) => {
       const newMonth = new Date(prevMonth);
@@ -34,6 +39,7 @@ const CustomCalendar: React.FC<CustomCalendarProps> = ({ onDateSelect }) => {
     });
   };
 
+  // Switch to the next month
   const nextMonth = () => {
     setCurrentMonth((prevMonth) => {
       const newMonth = new Date(prevMonth);
@@ -50,7 +56,7 @@ const CustomCalendar: React.FC<CustomCalendarProps> = ({ onDateSelect }) => {
         className="flex items-center space-x-2 px-4 py-2 rounded-xl border border-gray-300 text-secondary"
       >
         <span className="text-gray-700 text-xs">
-          {selectedDate ? format(selectedDate, 'yyyy-MM-dd') : 'Due Date'}
+          {selectedDate ? format(selectedDate, 'yyyy-MM-dd') : 'Select Date'}
         </span>
         <img src={chevron} alt="Chevron" className="h-4 w-4" />
       </button>
@@ -59,14 +65,10 @@ const CustomCalendar: React.FC<CustomCalendarProps> = ({ onDateSelect }) => {
       {isOpen && (
         <div className="absolute -right-20 mt-2 w-64 bg-white rounded-xl shadow-lg border border-gray-200 p-4">
           {/* Month Navigation */}
-          <div className="flex justify-between items-center mb-4 ">
-            <button onClick={prevMonth} className="text-xs font-bold">
-              Prev
-            </button>
+          <div className="flex justify-between items-center mb-4">
+            <button onClick={prevMonth} className="text-xs font-bold">Prev</button>
             <span className="text-sm font-semibold">{format(currentMonth, 'MMMM yyyy')}</span>
-            <button onClick={nextMonth} className="text-xs font-bold">
-              Next
-            </button>
+            <button onClick={nextMonth} className="text-xs font-bold">Next</button>
           </div>
 
           {/* Calendar Days */}
@@ -77,7 +79,7 @@ const CustomCalendar: React.FC<CustomCalendarProps> = ({ onDateSelect }) => {
                 className={`p-2 cursor-pointer text-xs rounded-sm hover:bg-todo_purple ${
                   selectedDate && isSameDay(day, selectedDate) ? 'bg-btn_primary text-white' : ''
                 } ${isToday(day) ? 'font-bold' : ''}`}
-                onClick={() => handleDateSelection(day)} // Call function to update date
+                onClick={() => handleDateSelection(day)} // Update the selected date
               >
                 {format(day, 'd')}
               </div>
