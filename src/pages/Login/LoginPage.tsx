@@ -14,24 +14,20 @@ const LoginPage: React.FC<IProps> = () => {
 
     useEffect(() => {
       if (user) {
-        navigate("/"); 
+        navigate("/tasks"); 
       }
     }, [user, navigate]);
   
     const handleLogin = () => {
-      console.log("Login button clicked"); // Debug log
       signInWithPopup(auth, provider)
         .then((data) => {
-          console.log("Login successful", data); // Debug log
           if (data.user.email) {
-            localStorage.setItem("userEmail", data.user.email);
+            localStorage.setItem("userEmail", data.user.email); 
             setUser(data.user.email);
-            navigate("/");
+            navigate("/tasks"); 
           }
         })
-        .catch((error) => {
-          console.error("Login Error:", error); // Debug log
-        });
+        .catch((error) => console.error("Login Error:", error));
     };
   
 
