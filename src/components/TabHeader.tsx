@@ -55,7 +55,7 @@ const TabHeader: React.FC<TabHeaderProps> = ({ onCategoryChange, onDateChange, o
                 <img src={chevronDownIcon} className="h-4 w-4" />
               </button>
               {isCategoryOpen && (
-                <ul className="absolute right-100 mt-2 w-30 bg-background rounded-xl shadow-lg border border-gray-300 z-1000">
+                <ul className="absolute right-100 mt-2 w-30 bg-background rounded-xl shadow-lg border border-gray-300 z-1000 bg-white">
                   <li onClick={() => handleCategorySelect("all")} className="cursor-pointer text-primary text-xs py-2 px-4 hover:bg-gray-100 font-bold">ALL</li>
                   <li onClick={() => handleCategorySelect("work")} className="cursor-pointer text-primary text-xs py-2 px-4 hover:bg-gray-100 font-bold">WORK</li>
                   <li onClick={() => handleCategorySelect("personal")} className="cursor-pointer text-primary text-xs py-2 px-4 hover:bg-gray-100 font-bold">PERSONAL</li>
