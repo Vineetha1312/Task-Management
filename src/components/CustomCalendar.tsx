@@ -3,34 +3,29 @@ import { format, startOfMonth, endOfMonth, eachDayOfInterval, isToday, isSameDay
 import chevron from '../assets/images/chevron-down.svg';
 
 interface CustomCalendarProps {
-  onDateSelect: (date: string | null) => void; // Callback to send selected date to parent
+  onDateSelect: (date: string | null) => void; 
 }
 
 const CustomCalendar: React.FC<CustomCalendarProps> = ({ onDateSelect }) => {
-  // Local state for the selected date and calendar visibility
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [isOpen, setIsOpen] = useState(false);
   const [currentMonth, setCurrentMonth] = useState(new Date());
 
-  // Generate days for the current month
   const generateCalendarDays = (month: Date) => {
     return eachDayOfInterval({ start: startOfMonth(month), end: endOfMonth(month) });
   };
 
   const calendarDays = generateCalendarDays(currentMonth);
 
-  // Handle date selection
   const handleDateSelection = (date: Date) => {
-    setSelectedDate(date); // Set the selected date locally
-    onDateSelect(format(date, 'yyyy-MM-dd')); // Send the formatted date to the parent component
+    setSelectedDate(date); 
+    onDateSelect(format(date, 'yyyy-MM-dd')); 
   };
 
-  // Toggle calendar visibility
   const toggleCalendar = () => {
     setIsOpen(!isOpen);
   };
 
-  // Switch to the previous month
   const prevMonth = () => {
     setCurrentMonth((prevMonth) => {
       const newMonth = new Date(prevMonth);
@@ -39,7 +34,6 @@ const CustomCalendar: React.FC<CustomCalendarProps> = ({ onDateSelect }) => {
     });
   };
 
-  // Switch to the next month
   const nextMonth = () => {
     setCurrentMonth((prevMonth) => {
       const newMonth = new Date(prevMonth);

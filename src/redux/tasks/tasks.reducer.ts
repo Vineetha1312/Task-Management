@@ -24,7 +24,6 @@ const initialState: TaskState = {
 export const taskReducer = (state = initialState, action: any): TaskState => {
   switch (action.type) {
     case ADD_TASK:
-  console.log("Adding task", action.payload);
   return {
     ...state,
     tasks: [...state.tasks, { ...action.payload, id: Date.now().toString() }],

@@ -64,7 +64,6 @@ const CreateTask: React.FC<CreateTaskProps> = ({ onClose, onAddTask }) => {
       lastUpdated: new Date().toISOString()      
 };
 
-    console.log("Adding new task:", newTask); 
 
     onAddTask(newTask);
     handleClose();  

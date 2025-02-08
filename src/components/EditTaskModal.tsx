@@ -240,7 +240,7 @@ const logActivity = (activityMessage: string) => {
                   {/* Attachment Uploader */}
               <div className="mt-4">
               <label htmlFor="dueDate" className="text-sm font-medium text-gray-700">
-Attachments                      </label>
+              Attachments                      </label>
               <div className=" mb-6 p-3 text-center bg-gray-100 rounded">
                     
                     <input

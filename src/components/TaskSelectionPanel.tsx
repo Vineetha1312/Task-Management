@@ -9,7 +9,6 @@ interface TaskSelectionPanelProps {
   selectedTasks: Set<string>;  
   onClearSelection: () => void;
   onDeleteSelected: () => void;
-  onChangeStatus: (newStatus: string) => void; 
 }
 
 const TaskSelectionPanel: React.FC<TaskSelectionPanelProps> = ({

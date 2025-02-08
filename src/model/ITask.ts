@@ -5,7 +5,7 @@ export interface ITask {
   status: 'todo' | 'in-progress' | 'completed';
   category: 'work' | 'personal';
   description?: string; 
-  lastUpdated: string;
+  lastUpdated?: string;
   createdAt?: string; 
   lastActivity?: string; 
 }

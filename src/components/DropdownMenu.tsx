@@ -44,7 +44,6 @@ const DropdownMenu = () => {
           <li
             className="cursor-pointer text-primary text-xs py-2 px-4 hover:bg-gray-100 font-bold flex items-center"
             onClick={() => {
-              console.log("Edit clicked"); 
               setIsDropdownOpen(false);
             }}
           >
@@ -54,7 +53,6 @@ const DropdownMenu = () => {
           <li
             className="cursor-pointer text-xs py-2 px-4 hover:bg-gray-100 font-bold flex items-center text-red-500"
             onClick={() => {
-              console.log("Delete clicked"); 
               setIsDropdownOpen(false);
             }}
           >

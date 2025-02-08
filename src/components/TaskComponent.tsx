@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { ITask } from "../model/ITask";
 import { useDraggable } from "@dnd-kit/core";  
 import Dropdown from "./Dropdown"; 
-import EditTaskModal from "./EditTaskModal"; 
+import EditTaskModal, { Task } from "./EditTaskModal"; 
 import MoreIcon from "../assets/images/more_icon.svg";
 
 interface TaskProps {
@@ -108,7 +108,7 @@ const TaskComponent: React.FC<TaskProps> = ({ task, onDelete, onUpdateStatus, on
       </div>
 
       <EditTaskModal
-        task={task}
+        task={task as Task}
         isOpen={isEditModalOpen}
         onClose={() => setIsEditModalOpen(false)}
         onUpdate={handleUpdateTask}

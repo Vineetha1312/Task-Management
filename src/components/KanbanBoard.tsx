@@ -95,7 +95,7 @@ const KanbanBoard: React.FC<KanbanBoardProps> = ({
       {/* Edit Modal */}
       {isEditModalOpen && taskToEdit && (
         <EditTaskModal
-          task={taskToEdit}
+          task={taskToEdit as Task}
           isOpen={isEditModalOpen}
           onClose={() => setIsEditModalOpen(false)}
           onUpdate={handleUpdateTask}

@@ -24,7 +24,7 @@ const HomePage: React.FC = () => {
   const [showAddTaskModal, setShowAddTaskModal] = useState(false);
 
   const [selectedCategory, setSelectedCategory] = useState<string>("all"); 
-  const [selectedDueDate, setSelectedDueDate] = useState<string>(""); 
+  const [selectedDueDate, setSelectedDueDate] = useState<string | null>(null); 
   const [searchQuery, setSearchQuery] = useState<string>("");
 
  
@@ -41,18 +41,16 @@ const HomePage: React.FC = () => {
     dispatch(taskActions.addTask({...task, id: generateUniqueId()}))
     setShowAddTaskModal(false)
   };
-
-  const filteredTasks = tasks.filter((task:ITask) => {
+  const filteredTasks = tasks.filter((task: ITask) => {
     const categoryMatch =
       selectedCategory === "all" || task.category === selectedCategory;
     const dueDateMatch = !selectedDueDate || task.dueDate === selectedDueDate;
     const searchMatch =
       task.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      task.description.toLowerCase().includes(searchQuery.toLowerCase());
-
+      task.description?.toLowerCase().includes(searchQuery.toLowerCase());
+  
     return categoryMatch && dueDateMatch && searchMatch;
   });
-  
 
   const handleTaskUpdate = (updatedTask: ITask) => {
     dispatch(taskActions.updateTaskStatus(updatedTask.id, updatedTask.status));
@@ -78,18 +76,18 @@ const HomePage: React.FC = () => {
         </button>
       </div>
       <TabHeader
-        onCategoryChange={setSelectedCategory}
-        onDateChange={(date) => setSelectedDueDate(date || '')}
-        onSearchChange={setSearchQuery}
-        onAddTask={addTask} />
+       onCategoryChange={setSelectedCategory}
+       onDateChange={(date) => setSelectedDueDate(date || '')}
+       onSearchChange={setSearchQuery}
+       onAddTask={addTask} />
       {/* Render List or Board View */}
       {activeTab === "list" ? (
         <ListView
-          tasks={filteredTasks}
-          onTaskAdd={(newTask) => dispatch(taskActions.addTask({...newTask, id: generateUniqueId()}))}
-          onTaskDelete={deleteTask}
-          onTaskStatusChange={updateTaskStatus}
-          onTaskUpdate={handleTaskUpdate}
+        tasks={filteredTasks} // Use filtered tasks
+        onTaskAdd={(newTask) => dispatch(taskActions.addTask({...newTask, id: generateUniqueId()}))}
+        onTaskDelete={deleteTask}
+        onTaskStatusChange={updateTaskStatus}
+        onTaskUpdate={handleTaskUpdate}
         />
       ) : (
         <KanbanBoard
